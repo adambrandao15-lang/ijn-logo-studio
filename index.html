@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Work+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:wght@700&family=Playfair+Display:ital,wght@1,600&family=UnifrakturMaguntia&family=Great+Vibes&family=Bebas+Neue&family=Montserrat:wght@600&display=swap&text=IN%20JESUS%E2%80%99%20NAMEIn%20Jesus%E2%80%99%20Name">
 <style>
 /* Layout: a lit product stage beside a column of choices; on phones the stage stays pinned on top while the choices scroll beneath. */
 :root {
@@ -130,6 +131,15 @@ legend small { font-size: inherit; font-weight: 500; letter-spacing: 0.04em; tex
 .finishes label span { font-size: 0.8rem; color: var(--muted); }
 .finishes label:hover { border-color: color-mix(in srgb, var(--gold) 50%, var(--line)); }
 .finishes input:checked + label { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, var(--well)); }
+.fonts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.fonts label { display: flex; flex-direction: column; gap: 2px; padding: 9px 12px 8px; border-radius: 12px; cursor: pointer; container-type: inline-size;
+  border: 1px solid var(--line); background: var(--well); transition: border-color 0.18s, background 0.18s; }
+.fonts label b { display: block; white-space: nowrap; overflow: hidden; font-size: min(1.45rem, calc(97cqi / var(--em, 12))); line-height: 1.4; }
+.fonts label span { font-size: 0.78rem; color: var(--muted); }
+.fonts label:hover { border-color: color-mix(in srgb, var(--gold) 50%, var(--line)); }
+.fonts input:checked + label { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, var(--well)); }
+.fonts input:checked + label span { color: var(--gold); }
+[hidden] { display: none !important; }
 .note { margin: 0; font-size: 0.82rem; color: var(--muted); }
 .note.warn { color: var(--text); padding: 10px 12px; border-radius: 10px; background: color-mix(in srgb, var(--gold) 14%, transparent); border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); }
 
@@ -246,10 +256,35 @@ legend small { font-size: inherit; font-weight: 500; letter-spacing: 0.04em; tex
         <legend>Back print <small>In Jesus’ Name</small></legend>
         <div class="seg">
           <input class="sr" type="radio" name="back" id="back-off" value="off"><label for="back-off">Off</label>
+          <input class="sr" type="radio" name="back" id="back-silicone" value="silicone"><label for="back-silicone">Silicone</label>
           <input class="sr" type="radio" name="back" id="back-embossed" value="embossed" checked><label for="back-embossed">Embossed</label>
           <input class="sr" type="radio" name="back" id="back-debossed" value="debossed"><label for="back-debossed">Debossed</label>
         </div>
         <p class="note" id="backNote"></p>
+      </fieldset>
+
+      <fieldset id="backColourSet">
+        <legend>Back colour</legend>
+        <div class="seg" id="backColourSeg">
+          <input class="sr" type="radio" name="backColour" id="backColour-white" value="white" checked><label for="backColour-white">White</label>
+          <input class="sr" type="radio" name="backColour" id="backColour-black" value="black"><label for="backColour-black">Tonal (black)</label>
+        </div>
+        <p class="note" id="backColourNote" hidden>Embossed and debossed lettering is always tonal: it's the fabric itself, pressed into shape. Pick Silicone to try white or tonal.</p>
+      </fieldset>
+
+      <fieldset id="fontSet">
+        <legend>Back font <small id="fontName"></small></legend>
+        <div class="fonts">
+          <input class="sr" type="radio" name="font" id="font-gloock" value="gloock" checked><label for="font-gloock"><b style="font-family:'Gloock',Georgia,serif;font-weight:400;letter-spacing:0.16em">IN JESUS’ NAME</b><span>Gloock · Bold modern serif, the one it used before</span></label>
+          <input class="sr" type="radio" name="font" id="font-cinzel" value="cinzel"><label for="font-cinzel"><b style="font-family:'Cinzel',serif;font-weight:700;letter-spacing:0.14em">IN JESUS’ NAME</b><span>Cinzel Bold · Roman inscription capitals</span></label>
+          <input class="sr" type="radio" name="font" id="font-cormorant" value="cormorant"><label for="font-cormorant"><b style="font-family:'Cormorant Garamond',serif;font-weight:700;letter-spacing:0.18em">IN JESUS’ NAME</b><span>Cormorant Garamond Bold · Classic book serif</span></label>
+          <input class="sr" type="radio" name="font" id="font-playfair" value="playfair"><label for="font-playfair"><b style="font-family:'Playfair Display',serif;font-weight:600;font-style:italic">In Jesus’ Name</b><span>Playfair Display SemiBold Italic · Elegant italic</span></label>
+          <input class="sr" type="radio" name="font" id="font-fraktur" value="fraktur"><label for="font-fraktur"><b style="font-family:'UnifrakturMaguntia',serif;font-weight:400">In Jesus’ Name</b><span>UnifrakturMaguntia · Blackletter, the Old English look</span></label>
+          <input class="sr" type="radio" name="font" id="font-vibes" value="vibes"><label for="font-vibes"><b style="font-family:'Great Vibes',cursive;font-weight:400">In Jesus’ Name</b><span>Great Vibes · Flowing script</span></label>
+          <input class="sr" type="radio" name="font" id="font-bebas" value="bebas"><label for="font-bebas"><b style="font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:0.08em">IN JESUS’ NAME</b><span>Bebas Neue · Tall condensed capitals</span></label>
+          <input class="sr" type="radio" name="font" id="font-montserrat" value="montserrat"><label for="font-montserrat"><b style="font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:0.3em">IN JESUS’ NAME</b><span>Montserrat SemiBold · Clean, wide-spaced capitals</span></label>
+        </div>
+        <p class="note">All eight are free Google Fonts and fine to use on clothing we sell. Give the printer the name shown under the one you pick.</p>
       </fieldset>
 
       <section class="about" aria-live="polite">
@@ -329,7 +364,7 @@ const SPECS = {
 };
 
 // ---------- state ----------
-const state = { garment: 'hoodie', fit: 'oversized', finish: 'embroidered', colour: 'white', size: 4, position: 'left', back: 'embossed' };
+const state = { garment: 'hoodie', fit: 'oversized', finish: 'embroidered', colour: 'white', size: 4, position: 'left', back: 'embossed', backColour: 'white', font: 'gloock' };
 
 // ---------- renderer ----------
 const stage = document.getElementById('stage');
@@ -530,9 +565,19 @@ function buildBody(sp) {
     return { a: lerp(p.a, q.a, u), b: lerp(p.b, q.b, u), n: lerp(p.n, q.n, u) };
   };
   const surfaceZ = (x, y, sign) => { const { a, b, n } = at(y); const r = Math.min(Math.abs(x) / a, 0.999); return sign * b * Math.pow(1 - Math.pow(r, n), 1 / n); };
+  // the same, plus the drape folds the mesh carries (matters for wide artwork on the back)
+  const skinZ = (x, y, sign) => {
+    const { a, b, n } = at(y); const r = Math.min(Math.abs(x) / a, 0.999);
+    const c = Math.sign(x) * Math.pow(r, n / 2), s = sign * Math.sqrt(Math.max(0, 1 - c * c));
+    const z = sign * b * Math.pow(1 - Math.pow(r, n), 1 / n), th = Math.atan2(s, c);
+    const hem = Math.pow(clamp(1 - (y - yBase) / (0.5 * H), 0, 1), 1.6);
+    let d = sp.fold * hem * (0.6 * Math.sin(th * 7 + 0.8) + 0.4 * Math.sin(th * 12 + 2.1));
+    d += 0.3 * sp.fold * Math.pow(Math.abs(c), 6) * Math.exp(-(((y - (yA - 5)) / 5) ** 2)) * Math.sin(y * 1.15);
+    return z + (z / b) / (Math.hypot(x / a, z / b) || 1) * d;
+  };
   // neck ring (top row) and hem ring (bottom row)
   const ring = (i) => { const out = []; const p = g.attributes.position; for (let j = 0; j <= C; j++) { const k = i * (C + 1) + j; out.push(new THREE.Vector3(p.getX(k), p.getY(k), p.getZ(k))); } return out; };
-  return { geometry: g, surfaceZ, at, neck: ring(R), hem: ring(0), yA, yS, yBase, C };
+  return { geometry: g, surfaceZ, skinZ, at, neck: ring(R), hem: ring(0), yA, yS, yBase, C };
 }
 
 function tubeGeometry(pointAt, tangentAt, s0, s1, segs, radial, radius, flat, ref, closed) {
@@ -782,17 +827,67 @@ function logoMask() {
   c.getContext('2d').drawImage(logoImg, pad, pad, LW, LH);
   return { m: maskFromCanvas(c), w: c.width, h: c.height, artW: LW * 1890 / 1926, artH: LH };  // artW = ink width, so sizes are measured edge to edge
 }
-function textMask(text) {
-  const fs = 210, track = 0.16 * fs, pad = 70;
-  const probe = document.createElement('canvas').getContext('2d'); probe.font = `400 ${fs}px Gloock, Georgia, serif`;
+// back lettering: each font with the case and spacing it reads best in
+const FONTS = {
+  gloock:     { name: 'Gloock', css: '"Gloock", Georgia, serif', weight: 400, upper: true, track: 0.16 },
+  cinzel:     { name: 'Cinzel Bold', css: '"Cinzel", serif', weight: 700, upper: true, track: 0.14 },
+  cormorant:  { name: 'Cormorant Garamond Bold', css: '"Cormorant Garamond", serif', weight: 700, upper: true, track: 0.18, fine: true },
+  playfair:   { name: 'Playfair Display SemiBold Italic', css: '"Playfair Display", serif', weight: 600, italic: true, upper: false, track: 0, fine: true },
+  fraktur:    { name: 'UnifrakturMaguntia', css: '"UnifrakturMaguntia", serif', weight: 400, upper: false, track: 0, fine: true },
+  vibes:      { name: 'Great Vibes', css: '"Great Vibes", cursive', weight: 400, upper: false, track: 0, fine: true },
+  bebas:      { name: 'Bebas Neue', css: '"Bebas Neue", sans-serif', weight: 400, upper: true, track: 0.08 },
+  montserrat: { name: 'Montserrat SemiBold', css: '"Montserrat", sans-serif', weight: 600, upper: true, track: 0.3 },
+};
+const fontSpec = (f, px) => `${f.italic ? 'italic ' : ''}${f.weight} ${px}px ${f.css}`;
+const fontText = (f) => f.upper ? 'IN JESUS’ NAME' : 'In Jesus’ Name';
+const wait = (ms) => new Promise(r => setTimeout(r, ms));
+async function ensureFont(f) {
+  for (let tries = 0; tries < 3; tries++) {
+    try {
+      const faces = await Promise.race([document.fonts.load(fontSpec(f, 210), fontText(f)), wait(4000).then(() => [])]);
+      if (faces.length) return true;
+    } catch (e) {}
+    await wait(400);
+  }
+  return false;
+}
+function textMask(f) {
+  const fs = 210, pad = 70, text = fontText(f), track = f.track * fs;
+  const probe = document.createElement('canvas').getContext('2d'); probe.font = fontSpec(f, fs);
   const chars = [...text]; const widths = chars.map(ch => probe.measureText(ch).width);
-  const artW = widths.reduce((s, v) => s + v, 0) + track * (chars.length - 1);
-  const m0 = probe.measureText('INJESUS'); const asc = m0.actualBoundingBoxAscent || fs * 0.72, desc = m0.actualBoundingBoxDescent || 0;
-  const artH = asc + desc;
-  const c = document.createElement('canvas'); c.width = Math.ceil(artW + pad * 2); c.height = Math.ceil(artH + pad * 2);
-  const ctx = c.getContext('2d'); ctx.font = probe.font; ctx.fillStyle = '#000'; ctx.textBaseline = 'alphabetic';
-  let x = pad; chars.forEach((ch, i) => { ctx.fillText(ch, x, pad + asc); x += widths[i] + track; });
-  return { m: maskFromCanvas(c), w: c.width, h: c.height, artW, artH };
+  const adv = track ? widths.reduce((s, v) => s + v, 0) + track * (chars.length - 1) : probe.measureText(text).width;
+  // draw with room for swashes, then crop to the ink so sizes are measured edge to edge
+  const W = Math.ceil(adv + fs * 2), H = Math.ceil(fs * 2.4), base = Math.round(fs * 1.45);
+  const big = document.createElement('canvas'); big.width = W; big.height = H;
+  const ctx = big.getContext('2d', { willReadFrequently: true }); ctx.font = probe.font; ctx.fillStyle = '#000'; ctx.textBaseline = 'alphabetic';
+  if (track) { let x = fs; chars.forEach((ch, i) => { ctx.fillText(ch, x, base); x += widths[i] + track; }); }
+  else ctx.fillText(text, fs, base);
+  const d = ctx.getImageData(0, 0, W, H).data; let x1 = W, y1 = H, x2 = 0, y2 = 0;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (d[(y * W + x) * 4 + 3] > 6) { if (x < x1) x1 = x; if (x > x2) x2 = x; if (y < y1) y1 = y; if (y > y2) y2 = y; }
+  if (x2 < x1) { x1 = 0; y1 = 0; x2 = W - 1; y2 = H - 1; }
+  const artW = x2 - x1 + 1, artH = y2 - y1 + 1;
+  const c = document.createElement('canvas'); c.width = artW + pad * 2; c.height = artH + pad * 2;
+  c.getContext('2d').drawImage(big, x1, y1, artW, artH, pad, pad, artW, artH);
+  big.width = big.height = 0;
+  const out = { m: maskFromCanvas(c), w: c.width, h: c.height, artW, artH };
+  c.width = c.height = 0;
+  return out;
+}
+const textCache = new Map();
+async function textSrcFor(id) {
+  const hit = textCache.get(id);
+  if (hit) { textCache.delete(id); textCache.set(id, hit); return hit; }
+  const f = FONTS[id], ok = await ensureFont(f);
+  const src = textMask(f); f.failed = !ok;
+  if (ok) { textCache.set(id, src); if (textCache.size > 3) textCache.delete(textCache.keys().next().value); }
+  return src;
+}
+// size each font's sample so the whole phrase fits its row
+function fitFontPreviews() {
+  for (const b of document.querySelectorAll('.fonts b')) {
+    b.style.fontSize = '100px'; const w = b.scrollWidth; b.style.fontSize = '';
+    if (w > 0) b.style.setProperty('--em', (w / 100).toFixed(3));
+  }
 }
 
 const MIN_FEATURE_MM = { embroidered: 1.0, silicone: 0.6, embossed: 1.5, debossed: 1.5 };
@@ -920,15 +1015,16 @@ function raisedMaterial(tex, finish, colour) {
 }
 
 // a fine grid laid on the chest, following the body's curve, for the raised finishes to push up from
-function raisedGeometry(point, src, widthCm) {
+function raisedGeometry(point, src, widthCm, side = 1) {
+  // side 1 is the front, -1 the back (where the artwork runs the other way along x so it reads from behind)
   const scale = widthCm / src.artW, Wc = src.w * scale, Hc = src.h * scale;
-  const nx = 320, ny = Math.round(nx * Hc / Wc);
+  const nx = clamp(Math.round(Wc * 10 / 0.6), 320, 900), ny = Math.max(8, Math.round(nx * Hc / Wc));
   const g = gridGeometry(ny, nx, (i, j) => {
     const u = j / nx, v = i / ny;
-    const x = point.x + (u - 0.5) * Wc, y = point.y + (0.5 - v) * Hc;
-    return [x, y, current.body.surfaceZ(x, y, 1) + 0.035, u, 1 - v];
+    const x = point.x + side * (u - 0.5) * Wc, y = point.y + (0.5 - v) * Hc;
+    return [x, y, current.body.skinZ(x, y, side) + side * 0.035, u, 1 - v];
   });
-  orient(g, Math.round(ny / 2) * (nx + 1) + Math.round(nx / 2), new THREE.Vector3(0, 0, 1));
+  orient(g, Math.round(ny / 2) * (nx + 1) + Math.round(nx / 2), new THREE.Vector3(0, 0, side));
   return g;
 }
 
@@ -995,23 +1091,32 @@ function updateLogo() {
   logoInfo = { point: p.point, normal: p.normal, h: state.size / LOGO_ASPECT, w: state.size };
 }
 
+const BACK_MAX_H = 7.5;   // cm: tall scripts are kept to this height rather than run shoulder to shoulder
+function backSize() {
+  const base = Math.min(2 * current.sp.W * 0.62, 44);
+  const widthCm = Math.min(base, BACK_MAX_H * TEXT_SRC.artW / TEXT_SRC.artH);
+  return { widthCm, heightCm: widthCm * TEXT_SRC.artH / TEXT_SRC.artW };
+}
 function updateBack() {
-  if (backDecal) { garmentGroup.remove(backDecal); backDecal.geometry.dispose(); backDecal = null; }
+  if (backDecal) { garmentGroup.remove(backDecal); backDecal.geometry.dispose(); backDecal.material.dispose(); backDecal = null; }
   if (state.back === 'off') return;
-  const sp = current.sp;
-  const widthCm = Math.min(2 * sp.W * 0.62, 44);
-  const key = `back|${state.back}|${widthCm.toFixed(1)}`;
-  const { tex } = cached(key, () => ({ tex: finishTextures(TEXT_SRC, state.back, 'black', widthCm) }));
+  const sp = current.sp, { widthCm } = backSize();
+  const raised = state.back === 'silicone', colour = raised ? state.backColour : 'black';
+  const key = `back|${state.font}|${state.back}|${colour}|${widthCm.toFixed(1)}`;
+  const { tex } = cached(key, () => ({ tex: finishTextures(TEXT_SRC, state.back, colour, widthCm) }));
   liveKeys.back = key;
   const y = current.isHoodie ? sp.H - sp.hoodLen - 9 : sp.H - 19;
   const p = placeOn(current.bodyMesh, 0, y, -1);
   if (!p) return;
-  const scale = widthCm / TEXT_SRC.artW;
-  const size = new THREE.Vector3(TEXT_SRC.w * scale, TEXT_SRC.h * scale, 9);
-  const g = new DecalGeometry(current.bodyMesh, p.point, p.rotation, size);
-  backDecal = new THREE.Mesh(g, decalMaterial(tex, state.back)); backDecal.receiveShadow = true; backDecal.renderOrder = 2;
+  if (raised) {
+    backDecal = new THREE.Mesh(raisedGeometry(p.point, TEXT_SRC, widthCm, -1), raisedMaterial(tex, 'silicone', colour));
+  } else {
+    const scale = widthCm / TEXT_SRC.artW;
+    const size = new THREE.Vector3(TEXT_SRC.w * scale, TEXT_SRC.h * scale, 9);
+    backDecal = new THREE.Mesh(new DecalGeometry(current.bodyMesh, p.point, p.rotation, size), decalMaterial(tex, state.back));
+  }
+  backDecal.receiveShadow = true; backDecal.renderOrder = 2;
   garmentGroup.add(backDecal);
-  current.backInfo = { y, widthCm, letterCm: widthCm * (TEXT_SRC.artH / TEXT_SRC.artW) };
 }
 
 // ---------- camera ----------
@@ -1122,15 +1227,28 @@ function words() {
   if (gap < minF * 0.92) { dn.className = 'note warn'; dn.textContent = `At ${state.size}cm the double lines in the J and N are about ${g}mm apart. ${ft.title === 'Embroidered' ? 'Thread' : ft.title === 'Silicone' ? 'Silicone' : 'Pressing'} needs about ${minF}mm, so they close up, as the preview shows.`; }
   else if (gap < minF * 1.15) { dn.className = 'note warn'; dn.textContent = `At ${state.size}cm the double lines are about ${g}mm apart, right at the ${minF}mm limit for ${ft.noun}. Expect them to look soft.`; }
   else { dn.className = 'note'; dn.textContent = `At ${state.size}cm the double lines are about ${g}mm apart, enough for ${ft.noun} to keep them.`; }
-  // back note
+  // back
+  const backOn = state.back !== 'off', backSil = state.back === 'silicone', F = FONTS[state.font];
+  $('backColourSet').hidden = !backOn; $('fontSet').hidden = !backOn;
+  $('backColourSeg').hidden = !backSil; $('backColourNote').hidden = backSil;
+  $('fontName').textContent = F.name;
   const bn = $('backNote');
-  if (state.back === 'off') bn.textContent = 'Plain back.';
-  else bn.textContent = `Pressed across the back, about ${Math.min(2 * sp.W * 0.62, 44).toFixed(0)}cm wide with letters about ${(Math.min(2 * sp.W * 0.62, 44) * TEXT_SRC.artH / TEXT_SRC.artW).toFixed(1)}cm tall. Large lettering presses cleanly.`;
+  if (!backOn) { bn.className = 'note'; bn.textContent = 'Plain back.'; }
+  else if (F.failed) { bn.className = 'note warn'; bn.textContent = `${F.name} didn't load, so this is a stand-in font. Check your connection and pick it again.`; }
+  else {
+    const { widthCm, heightCm } = backSize();
+    const dims = `about ${widthCm.toFixed(0)}cm wide and ${heightCm.toFixed(1)}cm tall`;
+    bn.className = 'note';
+    bn.textContent = backSil
+      ? `Silicone across the back, ${dims}, raised about ${RAISE_MM.silicone}mm.${state.backColour === 'black' ? ' Tonal: black on black, so it shows as a matte raised shape.' : ''}`
+      : `Pressed across the back, ${dims}.${F.fine ? ' This font has very fine lines, and pressing softens them.' : ' Large lettering presses cleanly.'}`;
+  }
   // chip and pick
   const colour = pressed ? 'tonal' : state.colour === 'white' ? 'white' : 'black';
   const pos = state.position === 'left' ? 'left chest' : 'centre chest';
-  $('chip').innerHTML = `<b>${state.fit === 'oversized' ? 'Oversized' : 'Regular'} ${piece}</b> · ${ft.title}, ${colour} · ${state.size}cm · ${pos}${state.back !== 'off' ? ` · Back ${state.back}` : ''}`;
-  const backLine = state.back === 'off' ? 'No back print.' : `Back: “In Jesus’ Name” ${state.back} across the back.`;
+  const backFinish = backSil ? `silicone in ${state.backColour === 'white' ? 'white' : 'black (tonal)'}` : state.back;
+  $('chip').innerHTML = `<b>${state.fit === 'oversized' ? 'Oversized' : 'Regular'} ${piece}</b> · ${ft.title}, ${colour} · ${state.size}cm · ${pos}${backOn ? ` · Back ${backSil ? (state.backColour === 'white' ? 'white silicone' : 'tonal silicone') : state.back}, ${F.name}` : ''}`;
+  const backLine = !backOn ? 'No back print.' : `Back: “In Jesus’ Name” in ${F.name}, ${backFinish}, across the back.`;
   const front = pressed ? `Front logo ${state.finish}, ${state.size}cm wide, on the ${pos}.` : `Front logo ${state.finish} in ${state.colour}, ${state.size}cm wide, on the ${pos}.`;
   $('pickText').textContent = `My IJN pick: ${state.fit} ${piece} in black. ${front} ${backLine}`;
 }
@@ -1146,21 +1264,30 @@ for (const b of document.querySelectorAll('.views button')) b.addEventListener('
 function onChange(name, value) {
   state[name] = name === 'size' ? Number(value) : value;
   if (name === 'garment' || name === 'fit') { buildGarment(); updateLogo(); updateBack(); words(); goTo(view === 'back' ? 'back' : view === 'close' ? 'close' : 'front'); return; }
-  if (name === 'back') { updateBack(); words(); goTo(state.back === 'off' ? 'front' : 'back'); return; }
+  if (name === 'back' || name === 'backColour') { updateBack(); words(); goTo(state.back === 'off' ? 'front' : 'back'); return; }
+  if (name === 'font') { setFont(value); return; }
   updateLogo(); words();
   if (view === 'close') goTo('close');
+}
+async function setFont(id) {
+  const src = await textSrcFor(id);
+  if (state.font !== id) return;   // a later pick has already taken over
+  TEXT_SRC = src; updateBack(); words(); goTo('back');
 }
 for (const input of document.querySelectorAll('.panel input[type=radio]')) input.addEventListener('change', () => { if (input.checked) onChange(input.name, input.value); });
 
 // ---------- start ----------
 let LOGO_SRC, TEXT_SRC;
+fitFontPreviews();
+document.fonts.ready.then(fitFontPreviews);
+document.fonts.addEventListener('loadingdone', fitFontPreviews);
 (async () => {
   try { await Promise.race([document.fonts.load('400 210px Gloock'), new Promise(r => setTimeout(r, 2500))]); } catch (e) {}
   logoImg = await loadImage(LOGO);
   LOGO_SRC = logoMask();
-  TEXT_SRC = textMask('IN JESUS’ NAME');
   // reflect any choices the browser restored
   for (const input of document.querySelectorAll('.panel input[type=radio]:checked')) state[input.name] = input.name === 'size' ? Number(input.value) : input.value;
+  TEXT_SRC = await textSrcFor(state.font);
   resize();
   buildGarment(); updateLogo(); updateBack(); words();
   goTo('front', true);
